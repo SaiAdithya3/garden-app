@@ -1,15 +1,34 @@
-import { Text, View } from "react-native";
+import Navbar from "@/components/navbar/Navbar";
+import SwapComponent from "@/components/SwapComponent/SwapComponent";
+import { ScrollView, Text, View, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Index() {
+const Index = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <SafeAreaView>
+      <ScrollView>
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <Navbar />
+          <View style={styles.container}>
+            <SwapComponent />
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+  },
+});
+
+export default Index;

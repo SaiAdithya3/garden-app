@@ -2,6 +2,7 @@ import "@walletconnect/react-native-compat";
 import { WagmiProvider } from "wagmi";
 import { mainnet, polygon, arbitrum, sepolia } from "@wagmi/core/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { LinearGradient } from 'expo-linear-gradient';
 import {
   createAppKit,
   defaultWagmiConfig,
@@ -10,13 +11,14 @@ import {
 import { Stack } from "expo-router";
 import * as Clipboard from "expo-clipboard";
 import { StatusBar } from "expo-status-bar";
-import { processEnvironment } from "@env";
+import { colors } from '../theme/colors'
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
 
 // 1. Get projectId at https://cloud.reown.com
-const projectId = process.env.PROJECT_ID;
+// const projectId = process.env.EXPO_PROJECT_ID;
+const projectId = 'de70dbf1a053637a2cce4254cbd45e24';
 
 if (!projectId) {
   throw new Error("Missing PROJECT_ID environment variable");
@@ -66,16 +68,21 @@ export default function RootLayout() {
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
+      <LinearGradient
+          colors={[colors.primary, colors.secondary]}
+          style={{ flex: 1 }}
+        >
         <AppKit />
         <Stack
           screenOptions={{
             headerShown: false,
             contentStyle: {
-              backgroundColor: "black",
+              backgroundColor: "tranparent",
             },
           }}
-        />
+          />
         <StatusBar style="auto" />
+        </LinearGradient>
       </QueryClientProvider>
     </WagmiProvider>
   );
