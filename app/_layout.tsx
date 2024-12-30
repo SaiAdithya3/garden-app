@@ -10,7 +10,6 @@ import {
 import { Stack } from "expo-router";
 import * as Clipboard from "expo-clipboard";
 import { StatusBar } from "expo-status-bar";
-import { processEnvironment } from "@env";
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();

@@ -1,6 +1,14 @@
+import { getUnmatched } from "@/host/api/orderbook";
+import { useEffect } from "react";
 import { Text, View } from "react-native";
 
 export default function Index() {
+  useEffect(() => {
+    (async () => {
+      const res = await getUnmatched("1", "10");
+      console.log("getUnmatched::", res);
+    })();
+  }, []);
   return (
     <View
       style={{
