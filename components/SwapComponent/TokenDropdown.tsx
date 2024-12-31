@@ -14,7 +14,7 @@ const TokenDropdown = () => {
   const [selectedToken, setSelectedToken] = useState(tokens[0])
   const [isDropdownOpen, setDropdownOpen] = useState(false)
 
-  const handleSelectToken = (token) => {
+  const handleSelectToken = (token: any) => {
     setSelectedToken(token)
     setDropdownOpen(false)
   }
@@ -30,18 +30,18 @@ const TokenDropdown = () => {
           <Text style={styles.tokenText}>{selectedToken.symbol}</Text>
         </View>
         <Image
-          source={require('../../assets/images/gardenlogos/garden_logomark.png')}
+          source={require('../../assets/images/chevrondown.png')}
           style={[
             styles.arrowIcon,
-            { transform: [{ rotate: isDropdownOpen ? '180deg' : '0deg' }] },
+            { transform: [{ rotate: isDropdownOpen ? '0deg' : '180deg' }] },
           ]}
         />
       </TouchableOpacity>
-      {isDropdownOpen && (
+      {!isDropdownOpen && (
         <View style={styles.dropdown}>
           <FlatList
             data={tokens}
-            keyExtractor={(item) => item.symbol}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.dropdownItem}
@@ -64,17 +64,13 @@ const TokenDropdown = () => {
 const styles = StyleSheet.create({
   container: {
     // width: '100%',
+    position: 'relative',
     marginVertical: 10,
   },
   dropdownButton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
-    backgroundColor: colors.bgtrans,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: colors.disabledButtonColor,
   },
   tokenInfo: {
     flexDirection: 'row',
@@ -90,16 +86,22 @@ const styles = StyleSheet.create({
     color: colors.fontColor,
   },
   arrowIcon: {
-    width: 16,
-    height: 16,
+    width: 12,
+    height: 12,
+    marginLeft: 6,
   },
   dropdown: {
+    position: 'absolute',
+    top: 18,
+    right: 0,
+    zIndex: 10,
     marginTop: 10,
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: colors.disabledButtonColor,
     maxHeight: 200,
+    width: 200,
   },
   dropdownItem: {
     flexDirection: 'row',

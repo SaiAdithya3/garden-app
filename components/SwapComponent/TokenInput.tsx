@@ -34,14 +34,14 @@ const TokenInput: React.FC<TokenInputProps> = ({ type }) => {
               placeholderTextColor="#554b6aad"
               keyboardType="numeric"
             />
-            <TouchableOpacity style={styles.tokenButton}>
+            {/* <TouchableOpacity style={styles.tokenButton}>
               <Text style={styles.coinText}>BTC</Text>
               <Image
                 source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5968/5968260.png' }}
                 style={styles.tokenImage}
               />
-            </TouchableOpacity>
-            {/* <TokenDropdown /> */}
+            </TouchableOpacity> */}
+            <TokenDropdown />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -52,6 +52,7 @@ const TokenInput: React.FC<TokenInputProps> = ({ type }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    zIndex: 1,
   },
   inner: {
     backgroundColor: 'white',
@@ -62,6 +63,7 @@ const styles = StyleSheet.create({
     gap: 5,
     borderRadius: 16,
     paddingVertical: 20,
+    zIndex: 1,
   },
   typetext: {
     fontSize: 12,
